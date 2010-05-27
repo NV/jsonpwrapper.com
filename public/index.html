@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>JSONP wrapper</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="alternate" type="application/atom+xml" href="http://github.com/feeds/NV/commits/jsonpwrapper.com" title="JSONP Wrapper: Changelog">
+</head>
+<body>
+<h1><abbr>JSONP</abbr> wrapper</h1>
+<h2>Everything to <abbr title="JSON with Padding">JSONP</abbr> converter. Gateway for cross-domain requests.</h2>
+<form action="/">
+  <div class="field url-row">
+    <input name="urls[]" type="url" value="http://elv1s.ru/x/pets.txt" required><label><abbr>URL</abbr>s</label>
+    <div id="url_dummy" class="hidden last"><input type="url" name="urls[]"></div>
+    <button onclick="add_one_more_url(this); return false;">+</button>
+  </div>
+  <div class="field callback-row">
+    <input name="callback" id="callback" type="text" placeholder="console.log">
+    <label>Callback</label>
+  </div>
+  <div class="field submit-row">
+    <input type="submit" value="Convert">
+    <a href="http://stackoverflow.com/questions/2131740/online-jsonp-converter-wrapper">What is that?</a>
+    &middot;
+    <a href="http://github.com/NV/jsonpwrapper.com/">Source code</a>
+  </div>
+</form>
+<script src="main.js" async></script>
+<script src="http://nv.github.com/placeholder.js/placeholder.js"></script>
+<script>
+inputPlaceholder(document.getElementById('callback'));
+</script>
+</body></html>

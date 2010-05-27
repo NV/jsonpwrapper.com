@@ -1,0 +1,93 @@
+body {
+  font: 16px sans-serif;
+  max-width: 800px;
+  padding: 0 .5em;
+  margin: 0 auto;
+  color: #111;
+  background: #dfd8e5;
+  text-align: center;
+}
+a:link {
+  color: #05C;
+}
+a:visited {
+  color: #a58cba;
+}
+a:hover,
+a:focus {
+  color: #C00;
+}
+h1 {
+  font: normal 3em Optima, Candara, Palatino, serif;
+  margin: 1em 0 0;
+}
+h2 {
+  margin: .5em 0 2em;
+  font: normal 16px Optima, Candara, Palatino, serif;
+  color: #a39aab;
+}
+form {
+  color: #a39aab;
+}
+input {
+  font-size: 100%;
+}
+.field {
+  position: relative;
+  margin-bottom: 1em;
+  padding: 0 36px 0 110px;
+}
+.url-row,
+.callback-row {
+  font-size: 150%;
+}
+.url-row input,
+.callback-row input {
+  width: 99%;
+}
+label {
+  position: absolute;
+  display: inline-block;
+  width: 96px;
+  left: 0;
+  top: .2em;
+  text-align: right;
+}
+input:focus + label {
+  color: #333;
+}
+abbr {
+  letter-spacing: .1em;
+  border-bottom: none;
+}
+.url-row button {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+}
+.url-row div input {
+  margin-top: .5em;
+}
+.url-row div {
+  -webkit-transition: height .1s ease-out;
+  -moz-transition: height .1s ease-out;
+  -o-transition: height .1s ease-out;
+  transition: height .1s ease-out;
+  width: 100%;
+  height: 2em;
+}
+#url_dummy {
+  display: none;
+}
+.url-row div.last {
+  overflow: hidden;
+}
+.url-row div.hidden {
+  height: 0;
+}
+.submit-row {
+  text-align: right;
+}
+.submit-row input {
+  float: left;
+}
