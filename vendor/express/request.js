@@ -241,7 +241,6 @@ exports.Request = new Class({
       .addListener('data', function(data){
         if (first) {
           first = false
-          self.header('Transfer-Encoding', 'chunked')
           self.status(200)
           self.contentType(stream.path)
           self.sendHead()
