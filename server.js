@@ -3,7 +3,7 @@ var sys = require('sys'),
 	fs = require('fs'),
 	URL = require('url');
 
-require.paths.unshift('vendor/express/lib');
+require.paths.unshift('vendor');
 require('express');
 require('express/plugins');
 
