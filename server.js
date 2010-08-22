@@ -1,15 +1,19 @@
-var sys = require('sys'),
-	http = require('http'),
-	fs = require('fs'),
-	URL = require('url');
+var sys = require('sys');
+var http = require('http');
+var fs = require('fs');
+var URL = require('url');
 
 require.paths.unshift('vendor');
-require('express');
-require('express/plugins');
 
-configure(function(){
-	set('root', __dirname);
-	use(Static);
+var express = require('express');
+var app = express.createServer();
+
+app.configure(function(){
+	app.use(express.methodOverride());
+	app.use(express.bodyDecoder());
+	app.use(app.router);
+	app.use(express.staticProvider(__dirname + '/public'));
+	app.use(express.errorHandler({dumpExceptions:true, showStack:true}));
 });
 
 function fetch(uri, callback) {
@@ -44,31 +48,33 @@ function fetchMany(uris, callback) {
 	}
 }
 
-get('/', function() {
-	var request = this;
-	if (request.params.get.urls || request.params.get.url) {
-		var callbackParam = request.params.get.callback || 'console.log';
-		if (request.params.get.urls) {
-			fetchMany(request.params.get.urls, function fetchManyHandler(bodies){
+app.get('/', function(request, response) {
+	var urls = request.query.urls;
+	var url = request.query.url;
+	if (urls || url) {
+		var callbackParam = request.query.callback || 'console.log';
+		if (urls) {
+			fetchMany(urls, function fetchManyHandler(bodies){
 				var hashes = [];
 				for (var i=0; i<bodies.length; i++) {
 					hashes.push({body: bodies[i]});
 				}
-				request.respond(200, callbackParam +'('+ JSON.stringify(hashes) +')');
+				response.contentType(".js");
+				response.send(callbackParam +'('+ JSON.stringify(hashes) +')');
 			});
 		} else {
-			fetch(request.params.get.url, function fetchHandler(data) {
-				request.respond(200, callbackParam +'({"body":'+ JSON.stringify(data) +'})');
+			fetch(url, function fetchHandler(data) {
+				response.send(callbackParam +'({"body":'+ JSON.stringify(data) +'})');
+				response.contentType(".js");
 			});
 		}
 	} else {
-		this.sendfile('public/index.html');
+		response.sendfile('public/index.html');
 	}
 });
 
-get('/*', function(path) {
-	this.sendfile('public/'+path);
+app.get('/*', function(request, response) {
+	response.sendfile('public/' + request.url);
 });
 
-
-run(parseInt(process.env.PORT || 8000), null);
+app.listen(parseInt(process.env.PORT || 8000));
