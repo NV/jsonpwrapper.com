@@ -1,0 +1,13 @@
+{
+	"name": "jsonpwrapper-com",
+	"version": "1.0.0",
+	"description" : "http://jsonpwrapper.com/",
+	"main": "./server.js",
+	"repository" : {
+		"type" : "git",
+		"url" : "git://github.com/NV/jsonpwrapper.com.git"
+	},
+	"dependencies": {
+		"express": "2.5.1"
+	}
+}
