@@ -1,4 +1,4 @@
-var sys = require('sys');
+var util = require('util');
 var http = require('http');
 var fs = require('fs');
 var URL = require('url');
